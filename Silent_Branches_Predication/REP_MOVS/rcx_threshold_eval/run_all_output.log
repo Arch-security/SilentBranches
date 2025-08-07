@@ -1,0 +1,451 @@
+Running tests... Log saved to run_all_output.log
+=== RCX = 0 ===
+cc -std=gnu -O1 -march=native -DRCX=0  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 0
+got time 48 
+got time 46 
+got time 48 
+got time 240 
+got time 274 
+got time 126 
+got time 82 
+got time 48 
+got time 34 
+got time 48 
+got time 50 
+got time 48 
+got time 58 
+got time 48 
+got time 50 
+got time 48 
+got time 226 
+got time 48 
+got time 50 
+got time 48 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 4 ===
+cc -std=gnu -O1 -march=native -DRCX=4  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 4
+got time 50 
+got time 158 
+got time 50 
+got time 50 
+got time 50 
+got time 50 
+got time 52 
+got time 108 
+got time 48 
+got time 60 
+got time 50 
+got time 48 
+got time 48 
+got time 62 
+got time 174 
+got time 48 
+got time 146 
+got time 154 
+got time 48 
+got time 46 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 8 ===
+cc -std=gnu -O1 -march=native -DRCX=8  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 8
+got time 260 
+got time 84 
+got time 48 
+got time 68 
+got time 50 
+got time 48 
+got time 48 
+got time 50 
+got time 46 
+got time 48 
+got time 48 
+got time 46 
+got time 534 
+got time 48 
+got time 70 
+got time 48 
+got time 280 
+got time 48 
+got time 50 
+got time 226 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 16 ===
+cc -std=gnu -O1 -march=native -DRCX=16  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 16
+got time 48 
+got time 48 
+got time 48 
+got time 48 
+got time 48 
+got time 50 
+got time 50 
+got time 46 
+got time 48 
+got time 48 
+got time 50 
+got time 64 
+got time 48 
+got time 50 
+got time 50 
+got time 48 
+got time 48 
+got time 420 
+got time 230 
+got time 54 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 32 ===
+cc -std=gnu -O1 -march=native -DRCX=32  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 32
+got time 48 
+got time 48 
+got time 50 
+got time 100 
+got time 164 
+got time 272 
+got time 48 
+got time 298 
+got time 376 
+got time 48 
+got time 48 
+got time 48 
+got time 50 
+got time 48 
+got time 46 
+got time 50 
+got time 256 
+got time 48 
+got time 50 
+got time 50 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 64 ===
+cc -std=gnu -O1 -march=native -DRCX=64  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 64
+got time 48 
+got time 50 
+got time 594 
+got time 50 
+got time 48 
+got time 48 
+got time 48 
+got time 48 
+got time 48 
+got time 50 
+got time 252 
+got time 114 
+got time 48 
+got time 46 
+got time 48 
+got time 50 
+got time 488 
+got time 48 
+got time 50 
+got time 50 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 72 ===
+cc -std=gnu -O1 -march=native -DRCX=72  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 72
+got time 214 
+got time 48 
+got time 288 
+got time 50 
+got time 48 
+got time 50 
+got time 50 
+got time 48 
+got time 592 
+got time 52 
+got time 372 
+got time 466 
+got time 94 
+got time 234 
+got time 48 
+got time 46 
+got time 160 
+got time 48 
+got time 48 
+got time 50 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 80 ===
+cc -std=gnu -O1 -march=native -DRCX=80  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 80
+got time 164 
+got time 50 
+got time 62 
+got time 54 
+got time 48 
+got time 224 
+got time 160 
+got time 48 
+got time 230 
+got time 48 
+got time 50 
+got time 48 
+got time 48 
+got time 50 
+got time 50 
+got time 48 
+got time 46 
+got time 50 
+got time 48 
+got time 48 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 128 ===
+cc -std=gnu -O1 -march=native -DRCX=128  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 128
+got time 50 
+got time 170 
+got time 48 
+got time 228 
+got time 50 
+got time 228 
+got time 50 
+got time 48 
+got time 48 
+got time 48 
+got time 60 
+got time 66 
+got time 58 
+got time 90 
+got time 306 
+got time 50 
+got time 48 
+got time 48 
+got time 480 
+got time 60 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 200 ===
+cc -std=gnu -O1 -march=native -DRCX=200  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 200
+got time 226 
+got time 226 
+got time 226 
+got time 230 
+got time 228 
+got time 226 
+got time 252 
+got time 226 
+got time 226 
+got time 238 
+got time 266 
+got time 226 
+got time 226 
+got time 236 
+got time 64 
+got time 274 
+got time 368 
+got time 654 
+got time 228 
+got time 226 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 256 ===
+cc -std=gnu -O1 -march=native -DRCX=256  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 256
+got time 276 
+got time 226 
+got time 224 
+got time 224 
+got time 230 
+got time 226 
+got time 866 
+got time 226 
+got time 228 
+got time 46 
+got time 226 
+got time 228 
+got time 224 
+got time 224 
+got time 226 
+got time 294 
+got time 226 
+got time 272 
+got time 226 
+got time 234 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 300 ===
+cc -std=gnu -O1 -march=native -DRCX=300  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 300
+got time 246 
+got time 230 
+got time 262 
+got time 224 
+got time 38 
+got time 282 
+got time 732 
+got time 224 
+got time 114 
+got time 602 
+got time 254 
+got time 228 
+got time 226 
+got time 134 
+got time 320 
+got time 232 
+got time 140 
+got time 224 
+got time 228 
+got time 310 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 400 ===
+cc -std=gnu -O1 -march=native -DRCX=400  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 400
+got time 62 
+got time 250 
+got time 522 
+got time 226 
+got time 66 
+got time 226 
+got time 228 
+got time 226 
+got time 236 
+got time 230 
+got time 226 
+got time 228 
+got time 226 
+got time 228 
+got time 132 
+got time 228 
+got time 228 
+got time 282 
+got time 262 
+got time 232 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 500 ===
+cc -std=gnu -O1 -march=native -DRCX=500  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 500
+got time 228 
+got time 230 
+got time 226 
+got time 224 
+got time 228 
+got time 228 
+got time 262 
+got time 230 
+got time 228 
+got time 238 
+got time 228 
+got time 230 
+got time 226 
+got time 286 
+got time 226 
+got time 236 
+got time 226 
+got time 774 
+got time 48 
+got time 228 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 512 ===
+cc -std=gnu -O1 -march=native -DRCX=512  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 512
+got time 290 
+got time 232 
+got time 244 
+got time 226 
+got time 234 
+got time 476 
+got time 232 
+got time 234 
+got time 240 
+got time 224 
+got time 232 
+got time 228 
+got time 382 
+got time 230 
+got time 226 
+got time 228 
+got time 408 
+got time 228 
+got time 280 
+got time 228 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 600 ===
+cc -std=gnu -O1 -march=native -DRCX=600  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 600
+got time 226 
+got time 228 
+got time 228 
+got time 166 
+got time 226 
+got time 226 
+got time 228 
+got time 230 
+got time 676 
+got time 226 
+got time 226 
+got time 228 
+got time 322 
+got time 228 
+got time 274 
+got time 350 
+got time 228 
+got time 226 
+got time 252 
+got time 224 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 640 ===
+cc -std=gnu -O1 -march=native -DRCX=640  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 640
+got time 254 
+got time 236 
+got time 226 
+got time 284 
+got time 228 
+got time 820 
+got time 228 
+got time 226 
+got time 226 
+got time 728 
+got time 234 
+got time 596 
+got time 228 
+got time 152 
+got time 226 
+got time 812 
+got time 416 
+got time 228 
+got time 224 
+got time 228 
+=======================
+rm -f measuret dummy.o libdummy.a
+=== RCX = 700 ===
+cc -std=gnu -O1 -march=native -DRCX=700  measuret.c -o measuret -LSilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval -ldummy -Wl,-rpath=SilentBranch/Silent_Branches_Predication/REP_MOVS/rcx_threshold_eval
+Running with RCX = 700
+got time 270 
+got time 346 
+got time 256 
+got time 232 
+got time 258 
+got time 228 
+got time 226 
+got time 230 
+got time 252 
+got time 316 
+got time 250 
+got time 270 
+got time 236 
+got time 248 
+got time 268 
+got time 182 
+got time 708 
+got time 240 
+got time 266 
+got time 226 
+=======================
+rm -f measuret dummy.o libdummy.a

